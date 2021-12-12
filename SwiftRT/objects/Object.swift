@@ -8,6 +8,8 @@
 import Foundation
 
 protocol Object {
-    var position: Int { get }
-    func intersect()
+    var position: Vector3d { get }
+    var color: Color { get }
+    func intersect(ray: Ray) -> Ray.Intersection?
+    func normal(intersection: Ray.Intersection) -> Vector3d
 }
