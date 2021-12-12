@@ -21,11 +21,11 @@
 		A8D87C012762BAA500DC0E4F /* Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D87C002762BAA500DC0E4F /* Object.swift */; };
 		A8D87C042762BD3700DC0E4F /* Sphere.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D87C032762BD3700DC0E4F /* Sphere.swift */; };
 		A8D87C062762BED100DC0E4F /* Vector3.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D87C052762BED100DC0E4F /* Vector3.swift */; };
-		A8D87C122762C67100DC0E4F /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D87C0D2762C3F000DC0E4F /* main.swift */; };
+		A8D87C122762C67100DC0E4F /* SwiftRT.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D87C0D2762C3F000DC0E4F /* SwiftRT.swift */; };
 		A8D87C132762C6BA00DC0E4F /* Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D87C002762BAA500DC0E4F /* Object.swift */; };
 		A8D87C142762C6BB00DC0E4F /* Sphere.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D87C032762BD3700DC0E4F /* Sphere.swift */; };
 		A8D87C152762C6BB00DC0E4F /* Vector3.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D87C052762BED100DC0E4F /* Vector3.swift */; };
-		A8D87C162762C6BB00DC0E4F /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D87C0D2762C3F000DC0E4F /* main.swift */; };
+		A8D87C162762C6BB00DC0E4F /* SwiftRT.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D87C0D2762C3F000DC0E4F /* SwiftRT.swift */; };
 		A8D87C1827636D4400DC0E4F /* Ray.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D87C1727636D4400DC0E4F /* Ray.swift */; };
 		A8D87C1927636D4400DC0E4F /* Ray.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D87C1727636D4400DC0E4F /* Ray.swift */; };
 		A8D87C1B2763725800DC0E4F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D87C1A2763725800DC0E4F /* Constants.swift */; };
@@ -87,7 +87,7 @@
 		A8D87C002762BAA500DC0E4F /* Object.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Object.swift; sourceTree = "<group>"; };
 		A8D87C032762BD3700DC0E4F /* Sphere.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sphere.swift; sourceTree = "<group>"; };
 		A8D87C052762BED100DC0E4F /* Vector3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vector3.swift; sourceTree = "<group>"; };
-		A8D87C0D2762C3F000DC0E4F /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		A8D87C0D2762C3F000DC0E4F /* SwiftRT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftRT.swift; sourceTree = "<group>"; };
 		A8D87C1727636D4400DC0E4F /* Ray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ray.swift; sourceTree = "<group>"; };
 		A8D87C1A2763725800DC0E4F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A8D87C1E2763B67900DC0E4F /* Output.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Output.swift; sourceTree = "<group>"; };
@@ -150,7 +150,7 @@
 				A8D87BDE2762A13200DC0E4F /* SwiftRT.entitlements */,
 				A8D87BDB2762A13200DC0E4F /* Preview Content */,
 				A8D87C052762BED100DC0E4F /* Vector3.swift */,
-				A8D87C0D2762C3F000DC0E4F /* main.swift */,
+				A8D87C0D2762C3F000DC0E4F /* SwiftRT.swift */,
 				A8D87C1727636D4400DC0E4F /* Ray.swift */,
 				A8D87C1A2763725800DC0E4F /* Constants.swift */,
 				A8D87C212763B7AE00DC0E4F /* Colors.swift */,
@@ -357,7 +357,7 @@
 				A8D87C322766264600DC0E4F /* Plan.swift in Sources */,
 				A8D87C222763B7AE00DC0E4F /* Colors.swift in Sources */,
 				A8D87C012762BAA500DC0E4F /* Object.swift in Sources */,
-				A8D87C122762C67100DC0E4F /* main.swift in Sources */,
+				A8D87C122762C67100DC0E4F /* SwiftRT.swift in Sources */,
 				A8D87C252763B84D00DC0E4F /* TerminalOutput.swift in Sources */,
 				A8D87C1827636D4400DC0E4F /* Ray.swift in Sources */,
 				A8D87C1F2763B67900DC0E4F /* Output.swift in Sources */,
@@ -398,7 +398,7 @@
 				A8D87C142762C6BB00DC0E4F /* Sphere.swift in Sources */,
 				A8D87C152762C6BB00DC0E4F /* Vector3.swift in Sources */,
 				A8D87C202763B67900DC0E4F /* Output.swift in Sources */,
-				A8D87C162762C6BB00DC0E4F /* main.swift in Sources */,
+				A8D87C162762C6BB00DC0E4F /* SwiftRT.swift in Sources */,
 				A8D87C292763DB1F00DC0E4F /* ImageOutput.swift in Sources */,
 				A8D87C332766264600DC0E4F /* Plan.swift in Sources */,
 				A8D87C1927636D4400DC0E4F /* Ray.swift in Sources */,

@@ -17,7 +17,7 @@ class Shader {
 }
 
 func !=(left: Shader, right: Shader) -> Bool {
-    return left != right
+    return ObjectIdentifier(left) != ObjectIdentifier(right)
 }
 
 extension Array where Element == Shader {

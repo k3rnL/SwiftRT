@@ -22,7 +22,7 @@ public struct Scene {
 }
 
 class Scenes {
-    static var scene1 = Scene(sizeX: 1280, sizeY: 720,
+    static var scene1 = Scene(sizeX: 1920, sizeY: 1080,
             position: Vector3(0, 3, 0),
             light: Vector3(10, 10, -10),
             objects: [
