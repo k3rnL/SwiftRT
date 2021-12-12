@@ -7,6 +7,7 @@
 
 import Foundation
 
+let start = DispatchTime.now()
 
 print(FileManager.default.currentDirectoryPath)
 
@@ -27,22 +28,19 @@ for y in 0..<scene.sizeY {
         
         let ray = Ray(position: scene.position, direction: Vector3(Px, Py, 1).normalized)
         
-        let intersection: Ray.Intersection? = scene.objects
-            .compactMap({$0.intersect(ray: ray)})
-            .min(by: {$0.distance < $1.distance})
-
-        if (intersection == nil) {
-            output.write(x: x, y: y, color: scene.background)
+        if let intersection: Ray.Intersection = ray.intersect(scene: scene) {
+            output.write(x: x, y: y, color: scene.shaders.shade(intersection: intersection, scene: scene))
         } else {
-            let light = scene.position
-            let color = intersection!.object.color
-            let N = intersection!.normal()
-            let L = (light - intersection!.position()).normalized
-            let diffusion = max(min(N.dot(L), 1), 0)
-            
-            output.write(x: x, y: y, color: color * diffusion)
+            output.write(x: x, y: y, color: scene.background)
         }
+
     }
 }
 
 output.frame()
+
+let end = DispatchTime.now()
+let nanoTime = end.uptimeNanoseconds - start.uptimeNanoseconds // <<<<< Difference in nano seconds (UInt64)
+let timeInterval = Double(nanoTime) / 1_000_000_000 // Technically could overflow for long running tests
+
+print("Time to generate : \(timeInterval) seconds")

@@ -8,16 +8,18 @@
 import Foundation
 
 class Sphere : Object {
-    
-    init(position: Vector3d, color: Color, R: Double) {
+
+    let position: Vector3d
+    let color: Color
+    let material: Material
+    let R: Double
+
+    init(position: Vector3d, color: Color, material: Material, R: Double) {
         self.position = position
         self.color = color
+        self.material = material
         self.R = R
     }
-    
-    var position: Vector3d
-    var color: Color
-    let R: Double
     
     func intersect(ray: Ray) -> Ray.Intersection? {
         let oc = ray.position - position
@@ -40,7 +42,7 @@ class Sphere : Object {
     }
     
     func normal(intersection: Ray.Intersection) -> Vector3d {
-        return (intersection.position() - position).normalized
+        (intersection.position - position).normalized
     }
     
 }

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8F0472EB11F5EAC4C25F03F5 /* Materials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F047BCB15FA9B854070998D /* Materials.swift */; };
+		8F0474CB4732E197821A87A7 /* Shaders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F047AFA55EB2B53782B5349 /* Shaders.swift */; };
+		8F0475A683F6A672AE555BA2 /* Materials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F047BCB15FA9B854070998D /* Materials.swift */; };
+		8F047E483A6D1B2E6E8FE073 /* Shaders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F047AFA55EB2B53782B5349 /* Shaders.swift */; };
 		A8D87BD62762A13100DC0E4F /* SwiftRTApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D87BD52762A13100DC0E4F /* SwiftRTApp.swift */; };
 		A8D87BD82762A13100DC0E4F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D87BD72762A13100DC0E4F /* ContentView.swift */; };
 		A8D87BDA2762A13200DC0E4F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A8D87BD92762A13200DC0E4F /* Assets.xcassets */; };
@@ -70,6 +74,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8F047AFA55EB2B53782B5349 /* Shaders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shaders.swift; sourceTree = "<group>"; };
+		8F047BCB15FA9B854070998D /* Materials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Materials.swift; sourceTree = "<group>"; };
 		A8D87BD52762A13100DC0E4F /* SwiftRTApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftRTApp.swift; sourceTree = "<group>"; };
 		A8D87BD72762A13100DC0E4F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A8D87BD92762A13200DC0E4F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -149,6 +155,8 @@
 				A8D87C1A2763725800DC0E4F /* Constants.swift */,
 				A8D87C212763B7AE00DC0E4F /* Colors.swift */,
 				A8D87C2A27660C5900DC0E4F /* Scenes.swift */,
+				8F047AFA55EB2B53782B5349 /* Shaders.swift */,
+				8F047BCB15FA9B854070998D /* Materials.swift */,
 			);
 			path = SwiftRT;
 			sourceTree = "<group>";
@@ -358,6 +366,8 @@
 				A8D87C062762BED100DC0E4F /* Vector3.swift in Sources */,
 				A8D87BD62762A13100DC0E4F /* SwiftRTApp.swift in Sources */,
 				A8D87C1B2763725800DC0E4F /* Constants.swift in Sources */,
+				8F0474CB4732E197821A87A7 /* Shaders.swift in Sources */,
+				8F0472EB11F5EAC4C25F03F5 /* Materials.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -394,6 +404,8 @@
 				A8D87C1927636D4400DC0E4F /* Ray.swift in Sources */,
 				A8D87C1C2763725800DC0E4F /* Constants.swift in Sources */,
 				A8D87C262763B84D00DC0E4F /* TerminalOutput.swift in Sources */,
+				8F047E483A6D1B2E6E8FE073 /* Shaders.swift in Sources */,
+				8F0475A683F6A672AE555BA2 /* Materials.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
