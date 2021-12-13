@@ -15,49 +15,57 @@ struct SwiftRT {
 
         print(FileManager.default.currentDirectoryPath)
 
-        let ray: Ray = Ray(position: Vector3(0), direction: Vector3(0, 0, 1))
-
-        let scene = Scenes.scene1
-
-        print(Colors.black.distance(Color(1)) / Colors.black.distance(Colors.white))
+        let scene = Scenes.scene2
 
         //let output = TerminalOutput(sizeX: scene.sizeX, sizeY: scene.sizeY)
         let output = ImageOutput(file: "/Users/edaniel/Documents/test.ppm", sizeX: scene.sizeX, sizeY: scene.sizeY)
 
-        Task {
-            await withTaskGroup(of: (Int, Int, Color).self) { group in
-                for y in 0..<scene.sizeY {
-                    for x in 0..<scene.sizeX {
-                        group.addTask {
-                            let imageAspectRatio: Double = Double(scene.sizeX) / Double(scene.sizeY); // assuming width > height
-                            let Px = ((2.0 * ((Double(x) + 0.5) / Double(scene.sizeX)) - 1.0)) * tan(Constants.fov / 2.0 * 3.14 / 180.0) * imageAspectRatio
-                            let Py = (1.0 - 2.0 * ((Double(y) + 0.5) / Double(scene.sizeY))) * tan(Constants.fov / 2.0 * 3.14 / 180.0)
+        let imageAspectRatio: Double = Double(scene.sizeX) / Double(scene.sizeY); // assuming width > height
+        let factorX = tan(Constants.fov / 2.0 * 3.14 / 180.0) * imageAspectRatio
+        let factorY = tan(Constants.fov / 2.0 * 3.14 / 180.0)
 
-                            let ray = Ray(position: scene.position, direction: Vector3(Px, Py, 1).normalized)
+        let columns = slice(array: Array(0..<scene.sizeX), into: scene.sizeX / 10)
+        DispatchQueue.concurrentPerform(iterations: 10) { index in
+            print(index)
+            for y in 0..<scene.sizeY {
+                for x in columns[index] {
+                    let Px = ((2.0 * ((Double(x) + 0.5) / Double(scene.sizeX)) - 1.0)) * factorX
+                    let Py = (1.0 - 2.0 * ((Double(y) + 0.5) / Double(scene.sizeY))) * factorY
 
-                            if let intersection: Ray.Intersection = ray.intersect(scene: scene) {
-                                return (x, y, scene.shaders.shade(intersection: intersection, scene: scene))
-                                //                        await output.write(x: x, y: y, color: scene.shaders.shade(intersection: intersection, scene: scene))
-                            } else {
-                                return (x, y, scene.background)
-                                //                        await output.write(x: x, y: y, color: scene.background)
-                            }
-                        }
+                    let ray = Ray(position: scene.position, direction: Vector3(Px, Py, 1).normalized)
+
+                    if let intersection: Ray.Intersection = ray.intersect(scene: scene) {
+                        output.write(x: x, y: y, color: scene.shaders.shade(intersection: intersection, scene: scene))
+                    } else {
+                        output.write(x: x, y: y, color: scene.background)
                     }
                 }
-                for await result in group {
-                    output.write(x: result.0, y: result.1, color: result.2)
-                }
             }
+            print("Finished \(index)")
         }
 
+        let deltaGeneration = delta(last: start)
+        let writeStart = DispatchTime.now()
 
         output.frame()
 
-        let end = DispatchTime.now()
-        let nanoTime = end.uptimeNanoseconds - start.uptimeNanoseconds // <<<<< Difference in nano seconds (UInt64)
-        let timeInterval = Double(nanoTime) / 1_000_000_000 // Technically could overflow for long running tests
+        let deltaWrite = delta(last: writeStart)
 
-        print("Time to generate : \(timeInterval) seconds")
+        print("Total time : \(deltaGeneration + deltaWrite) seconds")
+        print("Time to generate : \(deltaGeneration) seconds")
+        print("Including time to write : \(deltaWrite) seconds")
     }
+
+    static func slice<Element>(array: [Element], into size: Int) -> [[Element]] {
+        return stride(from: 0, to: array.count, by: size).map {
+            Array(array[$0..<Swift.min($0 + size, array.count)])
+        }
+    }
+
+    static func delta(last: DispatchTime) -> Double {
+        let end = DispatchTime.now()
+        let nanoTime = end.uptimeNanoseconds - last.uptimeNanoseconds // <<<<< Difference in nano seconds (UInt64)
+        return Double(nanoTime) / 1_000_000_000 // Technically could overflow for long running tests
+    }
+
 }

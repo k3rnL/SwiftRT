@@ -52,17 +52,6 @@ class Vector3<T: Numeric> : CustomStringConvertible {
         return x * that.x + y * that.y + z * that.z
     }
     
-    subscript(index: Int) -> T {
-        get {
-            switch index {
-            case 0: return x
-            case 1: return y
-            case 2: return z
-            default: assert(false, "Index out of range")
-            }
-        }
-    }
-    
     public var description : String {
         return "(\(x), \(y), \(z))"
     }

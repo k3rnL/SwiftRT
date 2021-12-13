@@ -29,18 +29,16 @@ class ImageOutput : Output {
     func frame() {
         let out: OutputStream = OutputStream(toFileAtPath: file, append: false)!
         out.open()
-        let header = "P3\n\(sizeX) \(sizeY)\n255\n"
+        let header = "P6\n\(sizeX) \(sizeY)\n255\n"
 
         out.write(header, maxLength: header.count)
 
-        let buffer: [Vector3i] = buffer.map({$0 * 255}).map { v in Vector3i(Int(v.x), Int(v.y), Int(v.z)) }
-        var toWrite = ""
+        var toWrite: [UInt8] = Array(repeating: 0, count: buffer.count * 3)
 
-        for y in 0..<sizeY {
-            for x in 0..<sizeX {
-                let color = buffer[sizeX * y + x]
-                toWrite.append("\(color.x) \(color.y) \(color.z)\n")
-            }
+        for i in 0..<buffer.count {
+            toWrite[i * 3] = UInt8(buffer[i].x * 255)
+            toWrite[i * 3 + 1] = UInt8(buffer[i].y * 255)
+            toWrite[i * 3 + 2] = UInt8(buffer[i].z * 255)
         }
 
         out.write(toWrite, maxLength: toWrite.count)

@@ -46,11 +46,39 @@ class Ray {
             Ray(position: position, direction: ray.direction - normal * 2 * (ray.direction.dot(normal)))
         }
 
-        var reflectedRay: Ray { reflectedRay(ray) }
+        var reflectedRay: Ray {
+            reflectedRay(ray)
+        }
 
-        var normal: Vector3d { object.normal(intersection: self) }
+        var refractedRay: Ray {
+            var cosi = max(min(ray.direction.dot(normal), 1), -1)
+            var etai = 1.0
+            var etat = object.material.refraction;
+            var N = normal
+            if (cosi < 0) {
+                cosi = -cosi;
+            } else {
+                let tmp = etai
+                etai = etat
+                etat = tmp
+                N = !N;
+            }
+            let eta = etai / etat;
+            let k = 1 - eta * eta * (1 - cosi * cosi);
+            if (k < 0) {
+                return Ray(position: position, direction: Vector3(0))
+            }
+            let dir = ray.direction * eta + N * (eta * cosi - sqrt(k))
+            return Ray(position: position, direction: dir)
+        }
 
-        var position: Vector3d { ray.position + ray.direction * distance }
+        var normal: Vector3d {
+            object.normal(intersection: self)
+        }
+
+        var position: Vector3d {
+            ray.position + ray.direction * distance
+        }
     }
 
 }

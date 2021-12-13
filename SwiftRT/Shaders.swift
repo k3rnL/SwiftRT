@@ -61,20 +61,38 @@ class Shaders {
         }
     })
 
-
-    static func toto() {}
-    static func tata() {}
-
     static let reflectionShading: Shader = Shader({ intersection, scene in
         let material = intersection.object.material
         if (material.reflection > 0) {
-//            withUnsafePointer(to: Shader) { (pointer: UnsafePointer<T>) -> Result in  }
             var color = scene.background
             var bounce = intersection
             for _ in 0...10 where bounce.hit && bounce.object.material.reflection != 0 {
                 if let inter = bounce.reflectedRay.intersect(scene: scene) {
                     let shadedColor = scene.shaders.filter({$0 != reflectionShading}).map({$0(inter, scene)}).reduce(Color(0), +)
                     color = color + shadedColor * bounce.object.material.reflection
+
+                    bounce = inter
+                } else {
+                    break
+                }
+            }
+
+            return color
+        }
+        else {
+            return Colors.black
+        }
+    })
+
+    static let refractionShading: Shader = Shader({ intersection, scene in
+        let material = intersection.object.material
+        if (material.refraction > 0) {
+            var color = scene.background
+            var bounce = intersection
+            for _ in 0...10 where bounce.hit && bounce.object.material.refraction != 0 {
+                if let inter = bounce.refractedRay.intersect(scene: scene) {
+                    let shadedColor = scene.shaders.filter({$0 != refractionShading}).map({$0(inter, scene)}).reduce(Color(0), +)
+                    color = color + shadedColor
 
                     bounce = inter
                 } else {

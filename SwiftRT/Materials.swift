@@ -30,4 +30,5 @@ struct Material {
 class Materials {
     static let Mat = Material(ambient: 0.1, diffuse: 0.6, roughness: 20)
     static let Metal = Material(ambient: 0.35, diffuse: 0.2, roughness: 1200, specular: 0.5, reflection: 0.5)
+    static let Glass = Material(roughness: 1000, specular: 0.5, refraction: 1.5)
 }
